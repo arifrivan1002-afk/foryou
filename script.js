@@ -4,7 +4,7 @@
   Contoh: "2026-11-10T00:00:00"
   Waktu mengikuti zona waktu perangkat yang membuka website.
 */
-const BIRTHDAY_DATE = "2026-11-07T00:00:00";
+const BIRTHDAY_DATE = "2026-11-10T00:00:00";
 
 const $ = (id) => document.getElementById(id);
 const stages = ["stage-countdown","stage-gift","stage-letter","stage-album","stage-video","stage-final"];
@@ -160,59 +160,32 @@ $("replayBtn").addEventListener("click", () => {
 
 // Kalau tanggal yang disetel sudah lewat saat website dibuka, tombol langsung aktif.
 
+// Musik menggunakan lagu MP3 milik sendiri
+const romanticMusic = new Audio("media/lany-ilysb.mp3");
 
-// Musik romantis instrumental orisinal berbasis Web Audio.
-// Browser meminta interaksi pengguna terlebih dahulu sebelum audio diputar.
-let romanticAudioContext = null;
-let romanticMusicTimer = null;
+romanticMusic.loop = true;
+romanticMusic.volume = 0.5;
+
 let romanticMusicOn = false;
-let noteIndex = 0;
-const romanticNotes = [
-  [261.63, 329.63, 392.00], [293.66, 349.23, 440.00],
-  [246.94, 329.63, 392.00], [220.00, 293.66, 369.99]
-];
-
-function playSoftChord() {
-  if (!romanticAudioContext || !romanticMusicOn) return;
-  const now = romanticAudioContext.currentTime;
-  const chord = romanticNotes[noteIndex % romanticNotes.length];
-  chord.forEach((frequency, index) => {
-    const oscillator = romanticAudioContext.createOscillator();
-    const gain = romanticAudioContext.createGain();
-    oscillator.type = "sine";
-    oscillator.frequency.value = frequency;
-    gain.gain.setValueAtTime(0.0001, now);
-    gain.gain.exponentialRampToValueAtTime(index === 0 ? 0.035 : 0.018, now + 0.25);
-    gain.gain.exponentialRampToValueAtTime(0.0001, now + 2.8);
-    oscillator.connect(gain);
-    gain.connect(romanticAudioContext.destination);
-    oscillator.start(now);
-    oscillator.stop(now + 2.9);
-  });
-  noteIndex++;
-}
 
 async function toggleRomanticMusic() {
   const button = $("musicToggle");
-  if (!romanticAudioContext) {
-    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-    if (!AudioContextClass) {
-      button.textContent = "Musik tidak didukung browser ini";
-      return;
+
+  if (!romanticMusicOn) {
+    try {
+      await romanticMusic.play();
+
+      romanticMusicOn = true;
+      button.textContent = "♫ Matikan musik";
+      button.setAttribute("aria-pressed", "true");
+    } catch (error) {
+      console.error("Musik gagal diputar:", error);
+      button.textContent = "♫ Coba nyalakan musik lagi";
     }
-    romanticAudioContext = new AudioContextClass();
-  }
-  if (romanticAudioContext.state === "suspended") {
-    await romanticAudioContext.resume();
-  }
-  romanticMusicOn = !romanticMusicOn;
-  if (romanticMusicOn) {
-    playSoftChord();
-    romanticMusicTimer = setInterval(playSoftChord, 2900);
-    button.textContent = "♫ Matikan musik";
-    button.setAttribute("aria-pressed", "true");
   } else {
-    clearInterval(romanticMusicTimer);
+    romanticMusic.pause();
+
+    romanticMusicOn = false;
     button.textContent = "♫ Nyalakan musik";
     button.setAttribute("aria-pressed", "false");
   }
