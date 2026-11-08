@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffd9e9">
+  <title>For Princess Shalya ♡</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient-stars" aria-hidden="true"></div>
+  <button class="music-note" id="musicToggle" type="button" aria-pressed="false">♫ Nyalakan musik</button>
+
+  <!-- TAHAP 1: COUNTDOWN -->
+  <main>
+    <section class="stage active" id="stage-countdown">
+      <div class="intro-wrap">
+      <div class="intro-mascot-column">
+        <img src="media/stitch-peganghati.png" class="mascot-image" alt="Maskot halaman awal">
+        <div class="mascot-heart">♡</div>
+        <div class="floating-moon">☾</div>
+      </div>
+      <div class="intro-content">
+        <p class="eyebrow">A LITTLE SURPRISE IS WAITING</p>
+        <h1>I have something<br><em>for you, Princess.</em></h1>
+        <p class="intro-copy">Sesuatu yang kecil, dibuat khusus untuk Princess Shalya.<br>Siap-siap ya, MBG (My Beautiful Girl).</p>
+        <div class="countdown-label">YOUR SPECIAL DAY BEGINS IN</div>
+        <div class="countdown" aria-live="polite">
+          <div class="time-box"><strong id="hours">00</strong><span>JAM</span></div>
+          <i>:</i>
+          <div class="time-box"><strong id="minutes">00</strong><span>MENIT</span></div>
+          <i>:</i>
+          <div class="time-box"><strong id="seconds">00</strong><span>DETIK</span></div>
+        </div>
+        <p class="countdown-hint" id="countdownHint">Sabar sedikit lagi, kejutanmu sedang menunggu ♡</p>
+        <button class="pill-btn locked" id="clickMe" disabled>Click me <span>♡</span><small id="lockText">akan terbuka saat waktunya tiba</small></button>
+        <div class="orbit-decoration"><span>♡</span><span>✧</span><span>✦</span></div>
+      </div>
+      </div>
+    </section>
+
+    <!-- TAHAP 2: KADO -->
+    <section class="stage" id="stage-gift">
+      <div class="stage-content">
+        <p class="eyebrow">A GIFT, JUST FOR YOU</p>
+        <h2>A little gift<br><em>for Princess Shalya.</em></h2>
+        <p class="soft-copy">Klik kadonya, ya. Aku punya sesuatu untuk disampaikan.</p>
+        <button class="gift-button" id="openGift" aria-label="Buka kotak kado">
+          <span class="gift-bow"><i></i><b></b></span>
+          <span class="gift-lid"></span>
+          <span class="gift-box"><i></i></span>
+          <span class="gift-sparkle sparkle-one">✦</span><span class="gift-sparkle sparkle-two">✧</span>
+        </button>
+        <p class="tap-hint">tap the gift to open ♡</p>
+      </div>
+    </section>
+
+    <!-- TAHAP 3: AMPLOP -->
+    <section class="stage" id="stage-letter">
+      <div class="stage-content letter-stage">
+        <p class="eyebrow">A LETTER FROM MY HEART</p>
+        <h2>For you, <em>Princess Shalya.</em></h2>
+        <p class="soft-copy">Ada beberapa kata yang ingin aku sampaikan...</p>
+        <button class="envelope-button" id="openEnvelope" aria-label="Buka amplop">
+          <span class="envelope-heart">♡</span>
+          <span class="envelope-paper"><b>Happy Birthday!</b><small>to my favorite human</small></span>
+          <span class="envelope-back"></span><span class="envelope-flap"></span><span class="envelope-front"></span>
+        </button>
+        <p class="tap-hint">tap the envelope to read ♡</p>
+        <article class="letter-message" id="letterMessage">
+          <div class="letter-stamp">♡</div>
+          <p class="eyebrow">HAPPY BIRTHDAY, PRINCESS SHALYA</p>
+          <h3>Untuk Kaushalya Kawula P.,<br><em>sayangnya aku.</em></h3>
+          <p>Selamat ulang tahun, Princess Shalya. Terima kasih sudah hadir dan menjadi salah satu hal paling indah dalam hidupku. Aku bersyukur bisa mengenal kamu, mendengar cerita-ceritamu, dan menjadi bagian dari perjalananmu.</p>
+          <p>Di umur yang baru ini, di umur yang sudah menginjak kepala dua, jangan sampe nginjek kepala orang ya wkwk, semoga semua doa baik menemukan jalannya menuju kamu. Semoga langkahmu selalu dimudahkan, rezekimu dilancarkan, hatimu dijaga agar tetap kuat, dan semua hal yang sedang kamu perjuangkan bisa tercapai satu per satu.</p>
+          <p>Jangan lupa bahagia, ya. Jangan terlalu keras sama diri sendiri. Apa pun yang nanti kamu hadapi, semoga kamu selalu ingat bahwa ada aku yang akan terus mendukung dan mendoakanmu.</p>
+          <p class="letter-sign">Arvan,<br><strong>your favorite person ♡</strong></p>
+          <button class="pill-btn next-btn" data-next="stage-album">Lihat kenangan <span>→</span></button>
+        </article>
+      </div>
+    </section>
+
+    <!-- TAHAP 4: ALBUM FOTO -->
+    <section class="stage" id="stage-album">
+      <div class="stage-content wide-content">
+        <p class="eyebrow">OUR LITTLE UNIVERSE</p>
+        <h2>Little moments,<br><em>big memories.</em></h2>
+        <p class="soft-copy">masih banyak kenangan, namun ini mungkin yang paling berkesan.</p>
+        <div class="memory-slider" id="memorySlider">
+          <button class="slide-arrow prev-slide" id="prevSlide" type="button" aria-label="Foto sebelumnya">‹</button>
+          <figure class="photo-slide active" data-slide="0">
+            <div class="polaroid-frame"><img alt="Kenangan pertama" class="memory-photo" data-photo-index="0"><span class="photo-placeholder">♡</span></div>
+            <figcaption>Kenangan kita ♡</figcaption>
+          </figure>
+          <button class="slide-arrow next-slide" id="nextSlide" type="button" aria-label="Foto berikutnya">›</button>
+          <div class="slide-dots" id="slideDots" aria-label="Navigasi foto"></div>
+        </div>
+        <p class="upload-note">♡ Setiap foto mempunyai kenangannya.</p>
+        <button class="pill-btn next-btn" data-next="stage-video">Lanjut ke video kenangan <span>→</span></button>
+      </div>
+    </section>
+
+    <!-- TAHAP 5: VIDEO -->
+    <section class="stage" id="stage-video">
+      <div class="stage-content">
+        <p class="eyebrow">PRESS PLAY, RELIVE THE MOMENTS</p>
+        <h2>Our story in<br><em>little scenes.</em></h2>
+        <p class="soft-copy">eksplor lebih banyak lagi yuk.</p>
+        <div class="video-frame" id="videoFrame">
+          <div class="video-placeholder" id="videoPlaceholder">
+            <span class="play-circle">▶</span>
+            <strong>Our sweetest memory</strong>
+            <small>Video kenangan untuk Princess Shalya</small>
+          </div>
+          <video id="memoryVideo" controls playsinline hidden></video>
+        </div>
+        <p class="upload-note">kurang ya vlognya wkwk, lopyu ♡</p>
+        <button class="pill-btn next-btn" data-next="stage-final">Ada satu kejutan lagi <span>♡</span></button>
+      </div>
+    </section>
+
+    <!-- TAHAP 6: UCAPAN AKHIR -->
+    <section class="stage final-stage" id="stage-final">
+      <div class="final-confetti" aria-hidden="true">✦　♫　♡　✧　✿　♪　✦</div><div class="final-sparkles">✦　✧　♡　✧　✦</div>
+      <p class="eyebrow">THE LAST SURPRISE</p>
+      <h2>Happy Birthday,<br><em>Princess Shalya!</em></h2>
+      <div class="mascot-scene" aria-label="Maskot alien biru lucu">
+        <div class="mascot-shadow"></div>
+        <img src="media/stitch-pegangbunga.png" class="mascot-image" alt="Maskot halaman akhir">
+        <div class="mascot-heart">♡</div>
+        <div class="mascot-caption">a flower of love from stitch</div>
+      </div>
+      <p class="final-message">Semoga hari-hari Princess dipenuhi tawa, hal-hal baik,<br>dan cinta yang nggak pernah habis. I love you, Princess! 💙</p>
+      <p class="music-hint">Putar musiknya untuk menemani kejutan ini ♫</p>
+      <button class="pill-btn" id="replayBtn">Ulangi kejutan dari awal ↻</button>
+      <div class="final-footer">made with endless love ♡</div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
